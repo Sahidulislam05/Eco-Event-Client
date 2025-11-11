@@ -1,10 +1,17 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import AuthContext from "../../Provider/Authcontext";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { logOut, user } = use(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   const links = (
     <>
       <li>
@@ -19,18 +26,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text border-purple-500 font-bold"
-              : "font-semibold"
-          }
-          to="/create-event"
-        >
-          Create Event
-        </NavLink>
-      </li> */}
+
       <li>
         <NavLink
           className={({ isActive }) =>
@@ -43,31 +39,6 @@ const Navbar = () => {
           Upcoming Events
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text border-purple-500 font-bold"
-              : "font-semibold"
-          }
-          to="/joined-event"
-        >
-          Joined Event
-        </NavLink>
-      </li> */}
-
-      {/* <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text border-purple-500 font-bold"
-              : "font-semibold"
-          }
-          to="/manage-events"
-        >
-          Manage Event
-        </NavLink>
-      </li> */}
     </>
   );
 
@@ -79,6 +50,9 @@ const Navbar = () => {
       .catch((error) => {
         toast.error(error.code);
       });
+  };
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
   };
 
   return (
@@ -115,9 +89,15 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className=" menu-horizontal px-1 space-x-2 ">{links}</ul>
         </div>
-        <div className="navbar-end gap-2">
+        <div className="navbar-end gap-2 ">
+          <input
+            onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            value="synthwave"
+            className="toggle theme-controller"
+          />
           {user ? (
-            <div>
+            <div className="flex justify-center items-center gap-1">
               <Link
                 onClick={handleSignOut}
                 to="register"
