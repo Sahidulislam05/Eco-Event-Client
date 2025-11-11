@@ -90,12 +90,14 @@ const Navbar = () => {
           <ul className=" menu-horizontal px-1 space-x-2 ">{links}</ul>
         </div>
         <div className="navbar-end gap-2 ">
-          <input
-            onChange={(e) => handleTheme(e.target.checked)}
-            type="checkbox"
-            value="synthwave"
-            className="toggle theme-controller"
-          />
+          <div>
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              value="synthwave"
+              className="toggle theme-controller"
+            />
+          </div>
           {user ? (
             <div className="flex justify-center items-center gap-1">
               <Link
