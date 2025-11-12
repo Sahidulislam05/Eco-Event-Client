@@ -9,24 +9,40 @@ const CreateEvent = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
   const [eventDate, setEventDate] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const title = e.target.title.value.trim();
+    const description = e.target.description.value.trim();
+    const eventType = e.target.eventType.value;
+    const thumbnail = e.target.thumbnail.value.trim();
+    const location = e.target.location.value.trim();
     const formattedDate = eventDate
       ? eventDate.toISOString().split("T")[0]
       : null;
-    const formData = {
-      title: e.target.title.value,
-      description: e.target.description.value,
-      eventType: e.target.eventType.value,
-      thumbnail: e.target.thumbnail.value,
-      location: e.target.location.value,
-      eventDate: formattedDate,
-      creatorEmail: user?.email,
-      creatorName: user?.displayName,
-    };
-    // console.log(formData);
 
+    // Validation
+    const newErrors = {};
+    if (!title) newErrors.title = "Event title is required.";
+    if (!description) newErrors.description = "Description is required.";
+    if (!eventType || eventType === "Select a category")
+      newErrors.eventType = "Please select an event type.";
+    if (!thumbnail) newErrors.thumbnail = "Image URL is required.";
+    if (!location) newErrors.location = "Location is required.";
+    if (!eventDate) newErrors.eventDate = "Please select a valid event date.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      Swal.fire({
+        icon: "error",
+        title: "Validation Error!",
+        text: "Please fill in all required fields correctly.",
+      });
+      return;
+    }
+
+    // Invalid date check
     const today = new Date();
     if (new Date(eventDate) <= today) {
       Swal.fire({
@@ -36,6 +52,17 @@ const CreateEvent = () => {
       });
       return;
     }
+
+    const formData = {
+      title,
+      description,
+      eventType,
+      thumbnail,
+      location,
+      eventDate: formattedDate,
+      creatorEmail: user?.email,
+      creatorName: user?.displayName,
+    };
 
     try {
       const res = await fetch("http://localhost:3000/events/", {
@@ -74,40 +101,51 @@ const CreateEvent = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center py-10">
-      <title>Create Event</title>
       <div className="card w-full max-w-lg shadow-2xl bg-base-100">
         <form onSubmit={handleSubmit} className="card-body space-y-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-4">
             Create New Event
           </h2>
 
+          {/* Title */}
           <div className="form-control">
             <label className="label font-semibold">Event Title</label>
             <input
               type="text"
               name="title"
-              className="input input-bordered w-full"
+              className={`input input-bordered w-full ${
+                errors.title ? "input-error" : ""
+              }`}
               placeholder="Enter event title"
-              required
             />
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title}</p>
+            )}
           </div>
 
+          {/* Description */}
           <div className="form-control">
             <label className="label font-semibold">Description</label>
             <textarea
               name="description"
-              className="textarea textarea-bordered w-full h-28 resize-none"
+              className={`textarea textarea-bordered w-full h-28 resize-none ${
+                errors.description ? "textarea-error" : ""
+              }`}
               placeholder="Write a short description..."
-              required
             ></textarea>
+            {errors.description && (
+              <p className="text-red-500 text-sm">{errors.description}</p>
+            )}
           </div>
 
+          {/* Event Type */}
           <div className="form-control">
             <label className="label font-semibold">Event Type</label>
             <select
               name="eventType"
-              className="select select-bordered appearance-none w-full"
-              required
+              className={`select select-bordered appearance-none w-full ${
+                errors.eventType ? "select-error" : ""
+              }`}
             >
               <option disabled selected>
                 Select a category
@@ -116,42 +154,59 @@ const CreateEvent = () => {
               <option>Plantation</option>
               <option>Donation</option>
             </select>
+            {errors.eventType && (
+              <p className="text-red-500 text-sm">{errors.eventType}</p>
+            )}
           </div>
 
+          {/* Image URL */}
           <div className="form-control">
             <label className="label font-semibold">Image URL</label>
             <input
               type="text"
               name="thumbnail"
-              className="input input-bordered w-full"
+              className={`input input-bordered w-full ${
+                errors.thumbnail ? "input-error" : ""
+              }`}
               placeholder="Paste image URL here"
-              required
             />
+            {errors.thumbnail && (
+              <p className="text-red-500 text-sm">{errors.thumbnail}</p>
+            )}
           </div>
 
+          {/* Location */}
           <div className="form-control">
             <label className="label font-semibold">Location</label>
             <input
               type="text"
               name="location"
-              className="input input-bordered w-full"
+              className={`input input-bordered w-full ${
+                errors.location ? "input-error" : ""
+              }`}
               placeholder="Event location"
-              required
             />
+            {errors.location && (
+              <p className="text-red-500 text-sm">{errors.location}</p>
+            )}
           </div>
 
+          {/* Event Date */}
           <div className="form-control flex flex-col gap-2">
             <label className="label font-semibold">Event Date</label>
-
             <DatePicker
               selected={eventDate}
               onChange={(date) => setEventDate(date)}
               minDate={new Date()}
               placeholderText="Select a future date"
-              className="input input-bordered w-full"
+              className={`input input-bordered w-full ${
+                errors.eventDate ? "input-error" : ""
+              }`}
               dateFormat={"yyyy-MM-dd"}
-              required
             ></DatePicker>
+            {errors.eventDate && (
+              <p className="text-red-500 text-sm">{errors.eventDate}</p>
+            )}
           </div>
 
           <button className="btn btn-primary w-full mt-4 hover:scale-105 transition-transform duration-200">

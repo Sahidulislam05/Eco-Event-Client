@@ -1,10 +1,11 @@
 import { Link } from "react-router";
+import Reveal from "../Reveal";
 
 const EventsCard = ({ event }) => {
   const { title, description, eventType, location, eventDate, _id, thumbnail } =
     event;
   return (
-    <div>
+    <Reveal>
       <div className="card bg-base-100 shadow-sm h-[500px]  hover:scale-105 transition ease-in-out">
         <figure>
           <img
@@ -31,7 +32,7 @@ const EventsCard = ({ event }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Reveal>
   );
 };
 

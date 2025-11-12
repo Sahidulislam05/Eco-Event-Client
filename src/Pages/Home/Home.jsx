@@ -3,6 +3,7 @@ import Slider from "../../Components/Slider/Slider";
 import NewsLetter from "../../Components/NewsLetter";
 import Gallery from "../../Components/Gallery";
 import FeaturesSection from "../../Components/FeaturesSection";
+import Reveal from "../../Components/Reveal";
 
 const Home = () => {
   return (
@@ -17,25 +18,30 @@ const Home = () => {
         <div className="w-20 h-1 bg-blue-500 mx-auto mt-4 rounded-full"></div>
       </div>
 
-      {/* Banner / Slider */}
-      <section className="mb-12">
-        <Slider />
-      </section>
-
-      {/* Features Section */}
-      <section className="mb-12">
-        <FeaturesSection />
-      </section>
-
-      {/* Gallery Section */}
-      <section className="mb-12">
-        <Gallery />
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="mb-20">
-        <NewsLetter />
-      </section>
+      <Reveal>
+        {/* Banner / Slider */}
+        <section className="mb-12">
+          <Slider />
+        </section>
+      </Reveal>
+      <Reveal>
+        {/* Features Section */}
+        <section className="mb-12">
+          <FeaturesSection />
+        </section>
+      </Reveal>
+      <Reveal>
+        {/* Gallery Section */}
+        <section className="mb-12">
+          <Gallery />
+        </section>
+      </Reveal>
+      <Reveal>
+        {/* Newsletter Section */}
+        <section className="mb-20">
+          <NewsLetter />
+        </section>
+      </Reveal>
     </div>
   );
 };
