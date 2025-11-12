@@ -7,7 +7,9 @@ const JoinedEvent = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/joined-events?email=${user.email}`)
+      fetch(
+        `https://social-eco-event-server.vercel.app/joined-events?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => setEvents(data));
     }

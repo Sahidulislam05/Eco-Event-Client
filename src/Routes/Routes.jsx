@@ -31,13 +31,16 @@ const router = createBrowserRouter([
       {
         path: "/upcoming-events",
         Component: UpcomingEvents,
-        loader: () => fetch("http://localhost:3000/events"),
+        loader: () =>
+          fetch("https://social-eco-event-server.vercel.app/events"),
       },
       {
         path: "/event-details/:id",
         Component: EventDetails,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/events/${params.id}`),
+          fetch(
+            `https://social-eco-event-server.vercel.app/events/${params.id}`
+          ),
       },
       {
         path: "/update-event/:id",
@@ -47,7 +50,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/events/${params.id}`),
+          fetch(
+            `https://social-eco-event-server.vercel.app/events/${params.id}`
+          ),
       },
       {
         path: "/login",

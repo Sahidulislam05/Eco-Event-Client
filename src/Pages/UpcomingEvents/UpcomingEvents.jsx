@@ -14,7 +14,9 @@ const UpcomingEvents = () => {
     if (isSearch) setLoading(true);
     else setFilterLoading(true);
 
-    fetch(`http://localhost:3000/search?search=${searchText}&type=${type}`)
+    fetch(
+      `https://social-eco-event-server.vercel.app/search?search=${searchText}&type=${type}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);

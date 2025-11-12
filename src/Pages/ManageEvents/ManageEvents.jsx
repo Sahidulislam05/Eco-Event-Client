@@ -10,7 +10,9 @@ const ManageEvents = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-events?email=${user.email}`)
+      fetch(
+        `https://social-eco-event-server.vercel.app/my-events?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setEvents(data);
@@ -24,7 +26,7 @@ const ManageEvents = () => {
   }
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/events/${id}`, {
+    fetch(`https://social-eco-event-server.vercel.app/events/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

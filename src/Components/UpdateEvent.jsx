@@ -71,11 +71,14 @@ const UpdateEvent = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/events/${data._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://social-eco-event-server.vercel.app/events/${data._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (res.ok) {
         Swal.fire({
@@ -92,10 +95,10 @@ const UpdateEvent = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Network Error!",
+        title: error.code,
         text: "Failed to connect to server.",
       });
     }

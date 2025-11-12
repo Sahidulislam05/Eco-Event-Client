@@ -23,14 +23,14 @@ const EventDetails = () => {
       if (user?.email) {
         try {
           const res = await fetch(
-            `http://localhost:3000/joined-events?email=${user.email}&eventId=${event._id}`
+            `https://social-eco-event-server.vercel.app/joined-events?email=${user.email}&eventId=${event._id}`
           );
           const data = await res.json();
           if (data.alreadyJoined) {
             setAlreadyJoined(true);
           }
         } catch (error) {
-          console.error("Check join error:", error);
+          // console.error("Check join error:", error);
         } finally {
           setLoading(false);
         }
@@ -63,11 +63,14 @@ const EventDetails = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/joined-events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(joinedEvent),
-      });
+      const res = await fetch(
+        "https://social-eco-event-server.vercel.app/joined-events",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(joinedEvent),
+        }
+      );
 
       const data = await res.json();
 
@@ -85,7 +88,7 @@ const EventDetails = () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       Swal.fire({
         icon: "error",
         title: "Network Error!",

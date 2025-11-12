@@ -65,14 +65,17 @@ const CreateEvent = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/events/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.AccessToken}`,
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        "https://social-eco-event-server.vercel.app/events/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.AccessToken}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (res.ok) {
         Swal.fire({
@@ -93,7 +96,7 @@ const CreateEvent = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Swal.fire({
         icon: "error",
         title: "Network Error!",
