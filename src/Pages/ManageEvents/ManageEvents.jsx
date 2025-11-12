@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import AuthContext from "../../Provider/Authcontext";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../../Components/Loading";
 
 const ManageEvents = () => {
   const { user, loading, setLoading } = use(AuthContext);
@@ -19,7 +20,7 @@ const ManageEvents = () => {
   }, [user, setLoading]);
 
   if (loading) {
-    return <p>Loading...wait</p>;
+    return <Loading></Loading>;
   }
 
   const handleDelete = (id) => {
