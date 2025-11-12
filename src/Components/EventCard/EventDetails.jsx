@@ -59,7 +59,7 @@ const EventDetails = () => {
       eventDate: event.eventDate,
       location: event.location,
       userEmail: user.email,
-      description: event.description
+      description: event.description,
     };
 
     try {
@@ -99,10 +99,7 @@ const EventDetails = () => {
       <div className="card bg-base-100 shadow-sm h-[500px] my-10">
         <figure>
           <img
-            src={
-              event.thumbnail ||
-              "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            }
+            src={event.thumbnail}
             alt="Event Thumbnail"
             className="object-cover w-full h-64 overflow-hidden"
           />
