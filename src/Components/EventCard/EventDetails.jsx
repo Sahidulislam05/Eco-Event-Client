@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
-import AuthContext from "../../Provider/Authcontext";
+import AuthContext from "../../Provider/AuthContext";
 
 const EventDetails = () => {
   const event = useLoaderData();
@@ -59,6 +59,7 @@ const EventDetails = () => {
       eventDate: event.eventDate,
       location: event.location,
       userEmail: user.email,
+      description: event.description
     };
 
     try {

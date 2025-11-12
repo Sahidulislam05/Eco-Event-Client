@@ -67,7 +67,10 @@ const CreateEvent = () => {
     try {
       const res = await fetch("http://localhost:3000/events/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.AccessToken}`,
+        },
         body: JSON.stringify(formData),
       });
 

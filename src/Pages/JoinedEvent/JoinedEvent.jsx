@@ -32,6 +32,8 @@ const JoinedEvent = () => {
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{event.title}</h2>
+
+                  <p className="text-sm text-gray-500">{event.description}</p>
                   <p className="text-sm text-gray-500">{event.location}</p>
                   <p className="text-sm font-semibold text-primary">
                     📅 {event.eventDate}
