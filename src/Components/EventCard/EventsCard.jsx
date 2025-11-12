@@ -6,13 +6,10 @@ const EventsCard = ({ event }) => {
     event;
   return (
     <Reveal>
-      <div className="card bg-base-100 shadow-sm h-[500px]  hover:scale-105 transition ease-in-out">
+      <div className="card bg-base-200 shadow-sm h-[500px] hover:scale-105 transition ease-in-out rounded-2xl ">
         <figure>
           <img
-            src={
-              thumbnail ||
-              "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            }
+            src={thumbnail}
             alt="Event Thumbnail"
             className="object-cover w-full h-48 overflow-hidden"
           />
