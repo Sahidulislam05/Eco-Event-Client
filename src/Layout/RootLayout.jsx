@@ -5,7 +5,7 @@ import Footer from "../Components/Footer/Footer";
 const RootLayout = () => {
   return (
     <div>
-      <nav className="w-11/12 mx-auto">
+      <nav>
         <Navbar></Navbar>
       </nav>
       <main className="min-h-screen">
