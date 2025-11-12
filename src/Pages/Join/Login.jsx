@@ -1,10 +1,10 @@
 import React, { use, useState } from "react";
 import AuthContext from "../../Provider/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser, setUser, googleLogin, email, setEmail } = use(AuthContext);
@@ -15,24 +15,26 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = e.target.email?.value;
-    const password = e.target.password?.value;
+    const emailValue = e.target.email?.value.trim();
+    const passwordValue = e.target.password?.value;
 
-    loginUser(email, password)
+    if (!emailValue) {
+      setError("Email is required");
+      return;
+    }
+
+    if (!passwordValue) {
+      setError("Password is required");
+      return;
+    }
+
+    // Reset previous error
+    setError("");
+
+    loginUser(emailValue, passwordValue)
       .then((res) => {
         setUser(res.user);
-        toast.success("Login Successful");
-        navigate(`${location.state ? location.state : "/"}`);
-      })
-      .catch((err) => {
-        setError(err.code);
-      });
-  };
 
-  const handleGoogleSignIn = () => {
-    googleLogin()
-      .then((res) => {
-        setUser(res.user);
         toast.success("Login Successful");
         navigate(`${location.state ? location.state : "/"}`);
       })
@@ -40,6 +42,18 @@ const Login = () => {
         toast.error(err.code);
       });
   };
+
+  const handleGoogleSignIn = () => {
+    googleLogin()
+      .then((res) => {
+        setUser(res.user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch(() => {
+        toast.error("Google login failed. Try again.");
+      });
+  };
+
   return (
     <div>
       <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden py-12">
@@ -63,7 +77,6 @@ const Login = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
 
@@ -77,7 +90,6 @@ const Login = () => {
                 name="password"
                 className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white focus:ring-2 focus:ring-indigo-400 outline-none"
                 placeholder="Enter your password"
-                required
               />
               <span
                 onClick={() => setShow(!show)}
@@ -87,18 +99,8 @@ const Login = () => {
               </span>
             </div>
 
-            {/* Forgot password */}
-            <div className="flex justify-between items-center mb-2 text-sm">
-              <Link
-                to="/forget-password"
-                className="text-indigo-400 hover:underline"
-              >
-                Forgot password?
-              </Link>
-            </div>
-
-            {/* Error message */}
-            {error && <p className="text-red-400 text-xs mb-2">{error}</p>}
+            {/* Error message below form */}
+            {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
 
             {/* Submit button */}
             <button
