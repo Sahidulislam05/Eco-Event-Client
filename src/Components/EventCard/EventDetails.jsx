@@ -1,10 +1,11 @@
 import React, { use, useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import AuthContext from "../../Provider/AuthContext";
 
 const EventDetails = () => {
   const event = useLoaderData();
+  const navigate = useNavigate();
   const { user, loading, setLoading } = use(AuthContext);
   const [alreadyJoined, setAlreadyJoined] = useState(false);
 
@@ -81,6 +82,7 @@ const EventDetails = () => {
           timer: 1500,
         });
         setAlreadyJoined(true);
+        navigate("/upcoming-events");
       } else {
         Swal.fire({
           icon: "error",
