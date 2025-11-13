@@ -51,11 +51,10 @@ const UpcomingEvents = () => {
     }
   };
 
-  // Reset button handle
   const handleReset = () => {
-    setEvents(data); // Reset events
-    setFilterType("all"); // Reset filter
-    if (searchInputRef.current) searchInputRef.current.value = ""; // Clear search input
+    setEvents(data);
+    setFilterType("all");
+    if (searchInputRef.current) searchInputRef.current.value = "";
   };
   return (
     <div className="w-11/12 max-w-7xl mx-auto mt-10 mb-10 md:mb-20">
