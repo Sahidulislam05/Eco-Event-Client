@@ -42,7 +42,9 @@ const ManageEvents = () => {
 
   return (
     <div className="w-11/12 mx-auto my-10">
-      <h1 className="text-3xl font-bold text-center mb-6">My Events</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 text-primary">
+        My Events
+      </h1>
       {events.length === 0 ? (
         <p className="text-center text-2xl font-bold text-gray-500">
           You haven’t create any event yet.
@@ -53,7 +55,7 @@ const ManageEvents = () => {
             <div className="card bg-base-100 shadow-sm h-[500px]  hover:scale-105 transition ease-in-out">
               <figure>
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                  src={event.thumbnail}
                   alt="NOT FOUND"
                   className="object-cover w-full h-48 overflow-hidden"
                 />
@@ -66,7 +68,9 @@ const ManageEvents = () => {
                     Event type: {event.eventType}{" "}
                   </div>
                   <div className="badge badge-outline">{event.location} </div>
-                  <div className="badge badge-outline">{event.eventDate} </div>
+                  <p className="badge badge-outline">
+                    {new Date(event.eventDate).toLocaleDateString("en-GB")}
+                  </p>
                 </div>
                 <div className="card-actions justify-end">
                   <div className="flex gap-2 mt-2">

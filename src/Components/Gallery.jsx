@@ -2,8 +2,8 @@ import React from "react";
 
 const Gallery = () => {
   return (
-    <div>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500/90 text-center mb-5">
+    <div className="w-11/12 mx-auto">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary text-center mb-5">
         Gallery
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10 w-full">

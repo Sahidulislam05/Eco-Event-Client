@@ -1,12 +1,13 @@
 import React, { use, useState } from "react";
 import DatePicker from "react-datepicker";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import AuthContext from "../Provider/Authcontext";
+import AuthContext from "../Provider/AuthContext";
 
 const UpdateEvent = () => {
   const data = useLoaderData();
   const { user } = use(AuthContext);
+  const navigate = useNavigate();
   const [eventDate, setEventDate] = useState(
     data?.eventDate ? new Date(data.eventDate) : null
   );
@@ -87,6 +88,7 @@ const UpdateEvent = () => {
           timer: 1500,
           draggable: true,
         });
+        navigate("/manage-events");
       } else {
         Swal.fire({
           icon: "error",
@@ -106,7 +108,7 @@ const UpdateEvent = () => {
 
   return (
     <div className="mx-auto">
-      <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center py-10">
+      <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center pt-10 pb-20">
         <div className="card w-full max-w-lg shadow-2xl bg-base-100">
           <form onSubmit={handleUpdateEvent} className="card-body space-y-4">
             <h2 className="text-3xl font-bold text-center text-primary mb-4">

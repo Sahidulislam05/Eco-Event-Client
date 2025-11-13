@@ -39,7 +39,7 @@ const UpcomingEvents = () => {
     fetchEvents("", type, false);
   };
   return (
-    <div className="w-11/12 max-w-7xl mx-auto my-10">
+    <div className="w-11/12 max-w-7xl mx-auto mt-10 mb-10 md:mb-20">
       <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold text-blue-500/90 text-center mb-10">
         Upcoming events
       </h1>

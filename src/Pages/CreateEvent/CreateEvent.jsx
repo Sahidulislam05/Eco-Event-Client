@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import AuthContext from "../../Provider/Authcontext";
+import AuthContext from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 
 const CreateEvent = () => {
   const { user } = use(AuthContext);
+  
   const navigate = useNavigate();
   const [eventDate, setEventDate] = useState(null);
   const [errors, setErrors] = useState({});
@@ -103,7 +104,7 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center py-10">
+    <div className="min-h-screen bg-linear-to-br from-base-200 to-base-300 flex items-center justify-center pt-10 pb-20">
       <div className="card w-full max-w-lg shadow-2xl bg-base-100">
         <form onSubmit={handleSubmit} className="card-body space-y-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-4">

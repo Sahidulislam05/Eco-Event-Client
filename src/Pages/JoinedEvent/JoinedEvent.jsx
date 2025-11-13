@@ -15,9 +15,9 @@ const JoinedEvent = () => {
     }
   }, [user]);
   return (
-    <div className=" bg-base-200">
+    <div className=" bg-base-200 pb-10 md:pb-20">
       <div className="p-8 min-h-screen w-10/12 mx-auto ">
-        <h1 className="text-3xl font-bold text-center mb-6">
+        <h1 className="text-3xl font-bold text-center mb-6 text-primary">
           My Joined Events
         </h1>
 

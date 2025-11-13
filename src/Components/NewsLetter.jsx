@@ -1,8 +1,6 @@
-
-
 const NewsLetter = () => {
   return (
-    <div>
+    <div className="w-11/12 mx-auto">
       <div className="flex flex-col justify-center items-center px-4 md:px-8">
         <div className="card lg:card-side bg-linear-to-r from-pink-400/50 to-pink-500/40 shadow-lg rounded-xl overflow-hidden w-full max-w-5xl">
           <figure className="flex justify-center items-center p-4 md:p-10 bg-pink-100/30">

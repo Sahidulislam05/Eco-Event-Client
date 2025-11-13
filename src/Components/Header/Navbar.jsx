@@ -84,7 +84,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="text-xs md:text-2xl font-bold">EcoEvent</a>
+          <a className="text-xs md:text-2xl font-bold text-primary">
+            Eco Event
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className=" menu-horizontal px-1 space-x-2 ">{links}</ul>

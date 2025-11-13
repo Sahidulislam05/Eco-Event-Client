@@ -25,7 +25,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <div className=" py-16">
+    <div className=" w-11/12 mx-auto py-16">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-bold text-primary mb-3">Our Features</h2>
         <p className="text-gray-600">
