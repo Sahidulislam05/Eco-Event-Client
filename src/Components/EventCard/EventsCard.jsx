@@ -2,8 +2,7 @@ import { Link } from "react-router";
 import Reveal from "../Reveal";
 
 const EventsCard = ({ event }) => {
-  const { title, description, eventType, location, eventDate, _id, thumbnail } =
-    event;
+  const { title, description, eventType, location, _id, thumbnail } = event;
   return (
     <Reveal>
       <div className="card bg-base-200 shadow-sm h-[500px] hover:scale-105 transition ease-in-out rounded-2xl ">
@@ -20,7 +19,10 @@ const EventsCard = ({ event }) => {
           <div className="card-actions overflow-hidden">
             <div className="badge badge-outline">Event type: {eventType} </div>
             <div className="badge badge-outline">{location} </div>
-            <div className="badge badge-outline">{eventDate} </div>
+
+            <p className="badge badge-outline">
+              {new Date(event.eventDate).toLocaleDateString("en-GB")}
+            </p>
           </div>
           <div className="card-actions justify-end">
             <Link to={`/event-details/${_id}`} className="btn btn-primary ">

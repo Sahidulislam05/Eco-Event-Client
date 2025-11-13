@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router";
 import EventsCard from "../../Components/EventCard/EventsCard";
 import { use, useState } from "react";
-import AuthContext from "../../Provider/Authcontext";
+import AuthContext from "../../Provider/AuthContext";
 
 const UpcomingEvents = () => {
   const data = useLoaderData();

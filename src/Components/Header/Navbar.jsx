@@ -94,6 +94,7 @@ const Navbar = () => {
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
               value="synthwave"
               className="toggle theme-controller"
             />

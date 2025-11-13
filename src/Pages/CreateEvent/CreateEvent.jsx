@@ -18,9 +18,6 @@ const CreateEvent = () => {
     const eventType = e.target.eventType.value;
     const thumbnail = e.target.thumbnail.value.trim();
     const location = e.target.location.value.trim();
-    const formattedDate = eventDate
-      ? eventDate.toISOString().split("T")[0]
-      : null;
 
     // Validation
     const newErrors = {};
@@ -59,7 +56,7 @@ const CreateEvent = () => {
       eventType,
       thumbnail,
       location,
-      eventDate: formattedDate,
+      eventDate: new Date(eventDate),
       creatorEmail: user?.email,
       creatorName: user?.displayName,
     };
@@ -71,7 +68,7 @@ const CreateEvent = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.AccessToken}`,
+            Authorization: `Bearer ${user.accessToken}`,
           },
           body: JSON.stringify(formData),
         }
@@ -203,7 +200,7 @@ const CreateEvent = () => {
             <DatePicker
               selected={eventDate}
               onChange={(date) => setEventDate(date)}
-              minDate={new Date()}
+              minDate={new Date(Date.now() + 24 * 60 * 60 * 1000)}
               placeholderText="Select a future date"
               className={`input input-bordered w-full ${
                 errors.eventDate ? "input-error" : ""
