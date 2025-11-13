@@ -38,7 +38,7 @@ const Home = () => {
       </Reveal>
       <Reveal>
         {/* Newsletter Section */}
-        <section className="mb-20">
+        <section className="mb-20 mt-8">
           <NewsLetter />
         </section>
       </Reveal>
