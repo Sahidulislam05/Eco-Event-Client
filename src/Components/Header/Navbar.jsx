@@ -84,7 +84,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="text-xs md:text-2xl font-bold text-primary">
+          <a className="text-xl md:text-2xl font-bold text-primary">
             Eco Event
           </a>
         </div>

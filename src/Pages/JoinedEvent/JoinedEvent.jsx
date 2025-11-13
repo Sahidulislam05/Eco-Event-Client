@@ -37,8 +37,8 @@ const JoinedEvent = () => {
 
                   <p className="text-sm text-gray-500">{event.description}</p>
                   <p className="text-sm text-gray-500">{event.location}</p>
-                  <p className="text-sm font-semibold text-primary">
-                    📅 {event.eventDate}
+                  <p className="badge badge-outline">
+                    {new Date(event.eventDate).toLocaleDateString("en-GB")}
                   </p>
                 </div>
               </div>
