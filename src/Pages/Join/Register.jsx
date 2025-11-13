@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import AuthContext from "../../Provider/Authcontext";
+import AuthContext from "../../Provider/AuthContext";
 import { Link, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
@@ -21,11 +21,9 @@ const Register = () => {
 
     const newErrors = {};
 
-  
     if (!name) newErrors.name = "Name is required.";
     if (!email) newErrors.email = "Email is required.";
     if (!photo) newErrors.photo = "Photo URL is required.";
-
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#?!@$%^&*])[A-Za-z\d#?!@$%^&*]{6,}$/;
@@ -54,7 +52,7 @@ const Register = () => {
           });
 
         toast.success("Registration Successful!");
-        navigate("/");
+        navigate("/login");
       })
       .catch((e) => {
         const errorMessages = {
