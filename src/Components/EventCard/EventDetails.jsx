@@ -117,7 +117,9 @@ const EventDetails = () => {
             <div className="badge badge-outline">{creatorEmail}</div>
             <div className="badge badge-outline">Type: {eventType}</div>
             <div className="badge badge-outline">{location}</div>
-            <div className="badge badge-outline">{eventDate}</div>
+            <p className="badge badge-outline">
+              {new Date(event.eventDate).toLocaleDateString("en-GB")}
+            </p>
           </div>
 
           <div className="card-actions justify-end mt-4">
