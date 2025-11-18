@@ -104,6 +104,31 @@ From **tree plantation 🌳** to **road cleaning 🧹**, this platform connects 
 
 ---
 
+## 📦 Dependencies / Libraries
+
+- `react-router-dom` → Routing  
+- `firebase` → Authentication & Firestore  
+- `react-datepicker` → Event date selection  
+- `sweetalert2` → Alert notifications  
+- `react-hot-toast` → Toast notifications  
+- `framer-motion` → Animations  
+- `axios` → HTTP requests  
+
+---
+
+## 💻 Run Locally
+
+1. **Clone the repositories**  
+```
+git clone https://github.com/Sahidulislam05/Eco-Event-Client   
+git clone https://github.com/Sahidulislam05/Eco-Event-Server
+cd  Eco-Event-Client
+npm install
+cd ../Eco-Event-Server
+npm install
+
+```
+
 ## 📱 Responsiveness
 
 Fully optimized and responsive for:
